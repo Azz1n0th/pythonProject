@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 
 
-@admin.register(Customers)
+@admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     pass
 
@@ -42,8 +42,8 @@ class AccessAccountAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Vendors)
-class VendorsAdmin(admin.ModelAdmin):
+@admin.register(Vendor)
+class VendorAdmin(admin.ModelAdmin):
     pass
 
 
@@ -62,7 +62,7 @@ class ExpenseItemAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Employees)
-class EmployeesAdmin(admin.ModelAdmin):
+@admin.register(Employee)
+class EmployeeAdmin(admin.ModelAdmin):
     pass
 

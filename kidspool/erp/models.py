@@ -6,16 +6,19 @@ class Product(models.Model):
     description = models.CharField(max_length=2000)
     price = models.DecimalField(max_digits=200, decimal_places=2)
 
+    def __str__(self):
+        return self.sku
+
 
 class PhysicalProduct(Product):
     name = models.CharField(max_length=1000)
 
 
-class ServiceProduct (Product):
+class ServiceProduct(Product):
     name = models.CharField(max_length=1000)
 
 
-class Customers(models.Model):
+class Customer(models.Model):
     name = models.CharField(max_length=1000, primary_key=True)
     customer_number = models.CharField(max_length=200)
 
@@ -28,8 +31,11 @@ class InvoiceInbound(models.Model):
 
 class InvoiceOutbound(models.Model):
     invoice_number = models.CharField(max_length=100)
-    products = models.ManyToManyField("self")
+    products = models.ManyToManyField(Product)
     total_price = models.DecimalField(max_digits=200, decimal_places=2)
+
+    def __str__(self):
+        return self.invoice_number
 
 
 class FiscalNote(models.Model):
@@ -44,7 +50,7 @@ class AccessAccount(models.Model):
     email = models.EmailField()
 
 
-class Vendors(models.Model):
+class Vendor(models.Model):
     name = models.CharField(max_length=2000)
     VAT_Number = models.CharField(max_length=2000)
 
@@ -52,6 +58,9 @@ class Vendors(models.Model):
 class Tax(models.Model):
     name = models.CharField(max_length=2000)
     price = models.DecimalField(max_digits=200, decimal_places=2)
+
+    class Meta:
+        verbose_name_plural = "Taxes"
 
 
 class Fee(models.Model):
@@ -64,8 +73,9 @@ class ExpenseItem(models.Model):
     price = models.DecimalField(max_digits=200, decimal_places=2)
 
 
-class Employees(models.Model):
+class Employee(models.Model):
     first_name = models.CharField(max_length=2000)
     middle_name = models.CharField(max_length=2000)
     last_name = models.CharField(max_length=2000)
+
 
